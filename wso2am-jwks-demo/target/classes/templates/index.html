@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            body{
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                background-color: #f0f0f0;
+            }
+            div.container{
+                max-width: 1000px;
+                margin: auto;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 10px;
+
+            }
+            textarea{
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-size: 10px;
+                width: 96%;
+                min-height: 60px;
+                height: 10.0em;
+                background-color: #ebebeb;
+                border-color: transparent;
+                padding:16px;
+                border-radius:8px;
+                overflow:auto;
+                resize: none;
+            }
+            p{
+                display: block;
+            }
+            label{
+                display: block;
+            }
+            input.print{
+                min-width: 96%;
+                padding: 16px;
+                border-radius:8px;
+                border: 1px solid transparent;
+                background-color: #ebebeb;
+            }
+            button{
+                padding: 8px;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-size: 10px;
+                border: 1px solid #bababa;
+                border-radius:4px;
+                min-width: 200px;
+            }
+            button:hover{
+                padding: 8px;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-size: 10px;
+                border: 1px solid #ffffff;
+                background-color: #000000;
+                color: #ffffff;
+                border-radius:4px;
+                min-width: 200px;
+                cursor: pointer;
+            }
+            div#pagefoot{
+                font-size: 10px;
+                text-align: center;
+                color: #bababa;
+            }
+            li span{
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1>WSO2 API Manager Client</h1>
+            </div>
+            <div>
+                <p>
+                    <a href="/home">Sign In to the Application</a>
+                </p>
+                <p>This is a SpringBoot MVC Application</p>
+                <ol>
+                    <li>This uses KeyCloak for Single-Sign-On
+                        <ul>
+                            <li>with OpenID-Connect</li>
+                            <li>then receives an ID Token (JWT)</li>
+                        </ul>
+                    </li>
+                    <li>An application exists on WSO2 API Manager
+                        <ul>
+                            <li>with client-key <b><span th:text="${clientKey}"/></b></li>
+                            <li>and client-secret <b><span th:text="${clientSecret}"/></b></li>
+                        </ul>
+                    </li>
+                    <li>This application invokes /token API endpoint on WSO2 API Manager
+                        <ul>
+                            <li><b><span th:text="${tokenEndpoint}"/></b></li>
+                            <li>to obtain an OAuth/Opaque Token</li>
+                            <li>using Service Provider's credentials</li>
+                            <li>and JWT Grant-type</li>
+                            <li>with the ID Token returned by KeyCloak</li>
+                        </ul>
+                    </li>
+                    <li>Then it can invoke APIs deployed on WSO2 API Manager
+                        <ul>
+                            <li><b><span th:text="${invokesAPI}"/></b></li>
+                            <li>by submitting OAuth/Opaque Token</li>
+                            <li>in the Authorization Header</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div id="pagefoot">
+                <p>WSO2 API Manager 2.6.0 | WSO2© 2019  Inc.</p>
+            </div>
+        </div>
+        <!-- container -->
+
+    </body>
+</html>

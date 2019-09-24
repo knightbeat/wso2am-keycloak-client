@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            body{
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                background-color: #f0f0f0;
+            }
+            div.container{
+                max-width: 1000px;
+                margin: auto;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 10px;
+
+            }
+            textarea{
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-size: 10px;
+                width: 96%;
+                min-height: 60px;
+                height: 10.0em;
+                background-color: #ebebeb;
+                border-color: transparent;
+                padding:16px;
+                border-radius:8px;
+                overflow:auto;
+                resize: none;
+            }
+            p{
+                display: block;
+            }
+            label{
+                display: block;
+            }
+            input.print{
+                min-width: 96%;
+                padding: 16px;
+                border-radius:8px;
+                border: 1px solid transparent;
+                background-color: #ebebeb;
+            }
+            button{
+                padding: 8px;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-size: 10px;
+                border: 1px solid #bababa;
+                border-radius:4px;
+                min-width: 200px;
+            }
+            button:hover{
+                padding: 8px;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                font-size: 10px;
+                border: 1px solid #ffffff;
+                background-color: #000000;
+                color: #ffffff;
+                border-radius:4px;
+                min-width: 200px;
+                cursor: pointer;
+            }
+            div#pagefoot{
+                font-size: 10px;
+                text-align: center;
+                color: #bababa;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div style="text-align: right">
+                Welcome <span th:text="${username}"></span> | <a th:href="@{/logout}">Logout</a>
+            </div>
+            <p id="message" style="font-family: sans-serif;font-size: 10px;color:red;min-height: 15px;"></p>
+            <label for="jwtoken"><b>Keycloak return the ID Token:</b></label>
+            <textarea id="jwtoken" th:text="${id_token}" wrap="true"></textarea>
+            <br/>
+            <button id="copyJwtButton" onclick="copyJWT()">Copy JWT</button>
+            <script>
+                function copyJWT() {
+                var copyText = document.getElementById("jwtoken");
+                copyText.select();
+                document.execCommand("copy");
+                document.getElementById("message").innerHTML = "JWT was copied to Clipboard!";
+                }
+            </script>
+            <p><br/></p>
+            <label for="curlCom"><b>cURL command to Invoke /token endpoint:</b></label>
+            <textarea id="curlCom" th:text="${cURLCommandTokenAPI}" wrap="true"></textarea>
+            <br/>
+            <button id="copyCurlButton" onclick="copyCurlCommand()">Copy cURL command</button>
+            <script>
+                function copyCurlCommand(){
+                var copyText = document.getElementById("curlCom");
+                copyText.select();
+                document.execCommand("copy");
+                document.getElementById("message").innerHTML = "cURL command was copied to Clipboard!";
+                }
+            </script>
+            <p><br/></p>
+            <label for="oauthTokenText"><b>Token Response From WSO2 API Manager</b></label>
+            <input type="text" id="oauthTokenText" class="print" th:value="${oauth_token}"/>
+            <br/>
+
+            <p><br/></p>
+            <label for="cURLBackendAPI"><b>cURL Command for Backend API</b></label>
+            <input type="text" id="cURLBackendAPI" class="print" th:value="${cURLBackendAPI}"/>
+            <br/>
+            <button id="copyCurlButton" onclick="copyCurlCommandBackendAPI()">Copy cURL command</button>
+            <script>
+                function copyCurlCommandBackendAPI(){
+                var copyText = document.getElementById("cURLBackendAPI");
+                copyText.select();
+                document.execCommand("copy");
+                document.getElementById("message").innerHTML = "cURL command for BackendAPI was copied to Clipboard!";
+                }
+            </script>
+            <p><br/></p>
+            <label for="backendAPIResponseText"><b>Backend API Response</b></label>
+            <textarea id="backendAPIResponseText" th:text="${finalResponse}" wrap="true"></textarea>
+            <br/>
+            <button id="copyCurlButton" onclick="copyBackendAPIResponse()">Copy Response</button>
+            <script>
+                function copyBackendAPIResponse(){
+                var copyText = document.getElementById("backendAPIResponseText");
+                copyText.select();
+                document.execCommand("copy");
+                document.getElementById("message").innerHTML = "Backend API Response was copied to Clipboard!";
+                }
+            </script>
+            <p><br/></p>
+            <div id="pagefoot">
+                <p>WSO2 API Manager 2.6.0 | WSO2© 2019  Inc.</p>
+            </div>
+        </div>
+        <!-- container -->
+    </body>
+</html>

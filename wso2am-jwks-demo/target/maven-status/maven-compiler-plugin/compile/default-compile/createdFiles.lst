@@ -1,0 +1,5 @@
+service/TokenEndpointResponseObject.class
+service/SecurityConfig.class
+service/WebController.class
+service/WSO2APIManager.class
+service/SpringBoot.class
